@@ -14,7 +14,7 @@ const actions = {
             'https://jsonplaceholder.typicode.com/todos'
         );
 
-        commit('setQuestions', response.data)
+        commit('SET_QUESTION', response.data)
     },
     async addQuestion({ commit }, question) {
         const response = await axios.post(
@@ -25,19 +25,19 @@ const actions = {
             }
         );
 
-        commit('newQuestion', response.data);
+        commit('NEW_QUESTION', response.data);
     },
     async deleteQuestion({ commit }, id) {
         await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
-        
-        commit('removeQuestion', id);
+
+        commit('REMOVE_QUESTION', id);
     }
 };
 
 const mutations = {
-    setQuestions: (state, questions) => (state.questions = questions),
-    newQuestion: (state, question) => state.questions.unshift(question),
-    removeQuestion: (state, id) => state.questions = state.questions.filter(question => question.id !== id)
+    SET_QUESTION: (state, questions) => (state.questions = questions),
+    NEW_QUESTION: (state, question) => state.questions.unshift(question),
+    REMOVE_QUESTION: (state, id) => state.questions = state.questions.filter(question => question.id !== id)
 };
 
 export default {

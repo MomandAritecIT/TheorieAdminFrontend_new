@@ -16,6 +16,5 @@ export default {
     Question,
     AddQuestion
   },
-
 };
 </script>
