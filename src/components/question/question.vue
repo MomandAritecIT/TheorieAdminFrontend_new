@@ -6,7 +6,7 @@
         <div>
           id: {{ question.id }} <br />
           Title: {{ question.title }}
-          <a @click="deleteQuestion(question.id)" >delete</a>
+          <a @click="deleteQuestion(question.id)">delete</a>
         </div>
       </div>
     </div>

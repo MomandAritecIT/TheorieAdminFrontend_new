@@ -27,7 +27,7 @@ const actions = {
 
         commit('newQuestion', response.data);
     },
-    async deleteQuestion({commit}, id) {
+    async deleteQuestion({ commit }, id) {
         await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
         
         commit('removeQuestion', id);
@@ -37,7 +37,7 @@ const actions = {
 const mutations = {
     setQuestions: (state, questions) => (state.questions = questions),
     newQuestion: (state, question) => state.questions.unshift(question),
-    removeQuestion: (state, id) => state.questions = state.questions.filter(question = question.id !== id)
+    removeQuestion: (state, id) => state.questions = state.questions.filter(question => question.id !== id)
 };
 
 export default {
