@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Home from './modules/home'
-import Login from './modules/auth'
+import Code from './modules/code'
+import Auth from './modules/auth'
 
 Vue.use(Vuex)
 
@@ -13,7 +13,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    Home,
-    Login
+    Code,
+    Auth
   }
 })

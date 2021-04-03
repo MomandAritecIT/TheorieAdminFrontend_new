@@ -38,7 +38,7 @@ export default {
         e.preventDefault();
         this.login(this.form).then(() => {
             this.$router.replace({
-                name: 'Home'
+                name: 'Dashboard'
             })
         }).catch((error) => {
             console.log(error);
