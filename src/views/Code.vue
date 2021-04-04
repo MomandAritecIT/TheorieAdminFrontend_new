@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Code from '@/components/question/code.vue';
-import AddCode from '@/components/question/addCode.vue';
+import Code from '@/components/code/code.vue';
+import AddCode from '@/components/code/addCode.vue';
 
 export default {
   components: {

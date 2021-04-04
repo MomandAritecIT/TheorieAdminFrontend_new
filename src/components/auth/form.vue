@@ -33,15 +33,17 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["login"]),
+    ...mapActions({ login: "Auth/login" }),
     onSubmit(e) {
-        e.preventDefault();
-        this.login(this.form).then(() => {
-            this.$router.replace({
-                name: 'Dashboard'
-            })
-        }).catch((error) => {
-            console.log(error);
+      e.preventDefault();
+      this.login(this.form)
+        .then(() => {
+          this.$router.replace({
+            name: "Dashboard",
+          });
+        })
+        .catch(() => {
+          console.log("failed");
         });
     },
   },

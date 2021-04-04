@@ -4,7 +4,7 @@ import VueCookies from 'vue-cookies'
 
 store.subscribe((mutations) => {
     switch(mutations.type) {
-        case 'SET_TOKEN':
+        case 'Auth/SET_TOKEN':
             if (mutations.payload) {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${mutations.payload}`
                 VueCookies.set('token', mutations.payload) 
@@ -12,6 +12,6 @@ store.subscribe((mutations) => {
                 axios.defaults.headers.common['Authorization'] = null
                 VueCookies.remove('token')
             }
-        break;
+            break;
     }
 })

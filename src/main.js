@@ -8,11 +8,11 @@ import axios from 'axios'
 
 require('@/store/subscriber');
 
-axios.defaults.baseURL = 'https://api44.aritecit.nl';
+axios.defaults.baseURL = 'http://localhost:8000';
 
 Vue.config.productionTip = false;
 
-store.dispatch('attempt', VueCookies.get('token'));
+store.dispatch('Auth/attempt', VueCookies.get('token'));
 
 new Vue({
   router,

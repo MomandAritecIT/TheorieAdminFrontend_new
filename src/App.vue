@@ -5,6 +5,8 @@
         <ul>
           <li><router-link :to="{ name: 'Dashboard' }">Dashboard</router-link></li>
           <li><router-link :to="{ name: 'Code' }">Code</router-link></li>
+          <li><router-link :to="{ name: 'Question' }">Question</router-link></li>
+          <li><router-link :to="{ name: 'AddQuestion' }">Add Question</router-link></li>
           <li><router-link :to="{ name: 'Login' }">Login</router-link></li>
           <li><a href="#" @click.prevent="logout">Logout</a></li>
         </ul>
@@ -20,7 +22,7 @@ export default {
   name: "App",
   methods: {
     ...mapActions({
-      logoutAction: 'logout'
+      logoutAction: 'Auth/logout'
     }),
     logout() {
       this.logoutAction().then(() => {
