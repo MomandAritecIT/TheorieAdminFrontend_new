@@ -18,6 +18,7 @@
 
       <PolarQuestionForm v-if="selectedSubject === 'Ja/Nee'" />
       <HazardPerceptionForm v-if="selectedSubject === 'Gevaarherkenning'" />
+      <MultipleQuestionForm v-if="selectedSubject === 'Meerkeuze'" />
     </div>
   </div>
 </template>
@@ -25,10 +26,12 @@
 <script>
 import PolarQuestionForm from "@/components/question/form/polarQuestion";
 import HazardPerceptionForm from "@/components/question/form/hazardPerception";
+import MultipleQuestionForm from "@/components/question/form/multipleQuestion";
 export default {
   components: {
     PolarQuestionForm,
-    HazardPerceptionForm
+    HazardPerceptionForm,
+    MultipleQuestionForm
   },
   data() {
     return {

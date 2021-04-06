@@ -6,7 +6,6 @@
         <v-text-field
           v-model="form.question"
           label="Vraag 'Wat doe je?'"
-          required
         ></v-text-field>
         <v-img width="200" :src="this.selectedImage" /><br />
         <input type="file" accept="image/*" @change="onFileSelected" />
@@ -43,7 +42,7 @@ export default {
       const formData = new FormData();
       formData.append("image", this.selectedFile, this.selectedFile.name);
       formData.append("answer", this.form.answer);
-      formData.append("question", this.form.question);
+      formData.append("question", this.form.question || "Wat doe je?");
       formData.append("motivation", this.form.motivation);
       formData.append("type", 2);
 

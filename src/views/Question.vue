@@ -18,6 +18,7 @@
 
       <PolarQuestionTable v-if="selectedSubject === 'Ja/Nee'" />
       <HazardPerceptionTable v-if="selectedSubject === 'Gevaarherkenning'" />
+      <MultipleQuestionTable v-if="selectedSubject === 'Meerkeuze'" />
     </div>
   </div>
 </template>
@@ -25,10 +26,12 @@
 <script>
 import PolarQuestionTable from "@/components/question/table/polarQuestion";
 import HazardPerceptionTable from "@/components/question/table/hazardPerception";
+import MultipleQuestionTable from "@/components/question/table/multipleQuestion";
 export default {
   components: {
     PolarQuestionTable,
     HazardPerceptionTable,
+    MultipleQuestionTable
   },
   data() {
     return {

@@ -9,9 +9,9 @@ const getters = {
 };
 
 const actions = {
-    async fetchQuestions({ commit }) {
+    async fetchQuestions({ commit }, type) {
         const response = await axios.get(
-            '/api/question/list'
+            `/api/question/list/${type}`
         );
 
         commit('SET_QUESTION', response.data)
@@ -24,8 +24,8 @@ const actions = {
 
         commit('NEW_QUESTION', response.data);
     },
-    async deleteQuestion({ commit }, id) {
-        await axios.delete(`/api/question/destroy/${id}`);
+    async deleteQuestion({ commit }, id, type) {
+        await axios.delete(`/api/question/destroy/${id}/${type}`);
 
         commit('REMOVE_QUESTION', id);
     }
