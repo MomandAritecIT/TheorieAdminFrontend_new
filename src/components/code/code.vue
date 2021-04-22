@@ -23,7 +23,7 @@ export default {
     ...mapActions(["fetchCodes", "deleteCode"]),
   },
   computed: mapGetters({
-    allCodes: "allQuestions",
+    allCodes: "allCodes",
     authenticated: "Auth/authenticated",
   }),
   created() {

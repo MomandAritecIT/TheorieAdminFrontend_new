@@ -1,73 +1,79 @@
 <template>
-  <!-- <v-card class="mx-auto" max-width="1000" outlined>
-    <v-form>
-      <v-text-field
-        v-model="form.email"
-        type="text"
-        label="E-mail"
-        required
-      ></v-text-field>
+  <section>
+    <Notification />
+    <v-card elevation="2" class="pa-5">
+      <v-form ref="form" v-model="valid" lazy-validation>
+        <v-text-field
+          v-model="form.email"
+          :rules="emailRules"
+          label="E-mail"
+          autocomplete
+          required
+        ></v-text-field>
 
-      <v-text-field
-        v-model="form.password"
-        type="password"
-        label="Password"
-        autocomplete="true"
-        required
-      ></v-text-field>
-      <v-btn color="primary" class="mr-4" @click="onSubmit"> Submit </v-btn>
-    </v-form>
-  </v-card> -->
-  <v-form ref="form" v-model="valid" lazy-validation>
-    <v-text-field
-      v-model="name"
-      :counter="10"
-      :rules="nameRules"
-      label="Name"
-      required
-    ></v-text-field>
+        <v-text-field
+          v-model="form.password"
+          :rules="passwordRules"
+          label="password"
+          type="password"
+          autocomplete
+          required
+        ></v-text-field>
 
-    <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="E-mail"
-      required
-    ></v-text-field>
-
-    <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
-      Validate
-    </v-btn>
-
-    <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
-
-    <v-btn color="warning" @click="resetValidation"> Reset Validation </v-btn>
-  </v-form>
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          @click.prevent="onSubmit"
+        >
+          Login
+        </v-btn>
+      </v-form>
+    </v-card>
+  </section>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import Notification from "@/components/notification";
 
 export default {
+  components: {
+    Notification,
+  },
   data() {
     return {
       form: {
         email: "",
         password: "",
       },
+      passwordRules: [
+        (v) => !!v || "Password is required",
+        (v) => (v && v.length >= 6) || "Pasword must be atleast 6 characters",
+      ],
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      valid: false,
     };
   },
   methods: {
-    ...mapActions({ login: "Auth/login" }),
-    onSubmit(e) {
-      e.preventDefault();
+    ...mapActions({
+      login: "Auth/login",
+      SET_SUCCESS: "Notification/SET_SUCCESS",
+      SET_ERROR: "Notification/SET_ERROR",
+    }),
+    onSubmit() {
       this.login(this.form)
         .then(() => {
           this.$router.replace({
             name: "Dashboard",
           });
+          this.SET_SUCCESS("succesvol ingelogged");
         })
-        .catch(() => {
-          console.log("failed");
+        .catch((error) => {
+          this.SET_ERROR(error.response.data.error);
         });
     },
   },

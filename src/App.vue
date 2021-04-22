@@ -20,9 +20,19 @@
             <v-list-item-title>{{ link.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item @click="logoutAction">
+          <v-list-item-icon>
+            <v-icon>mdi-logout-variant</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-main>
+      <Notification />
       <router-view />
     </v-main>
   </v-app>
@@ -30,14 +40,18 @@
 
 <script>
 import { mapActions } from "vuex";
+import Notification from "@/components/notification";
+
 export default {
+  components: {
+    Notification
+  },
   name: "App",
   data() {
     return {
       links: [
         { title: "Dashboard", route: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Code", route: "Code", icon: "mdi-qrcode" },
-        { title: "Logout", route: "Logout", icon: "mdi-logout-variant" },
+        { title: "Code", route: "Code", icon: "mdi-qrcode" }
       ],
       right: null,
     };
