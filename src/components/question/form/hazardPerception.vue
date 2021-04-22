@@ -17,12 +17,12 @@
         </v-radio-group>
         <v-textarea
           v-model="form.motivation"
-          solo
+          solou
           name="input-7-4"
           label="Motivatie"
         ></v-textarea>
       </v-form>
-      <input type="submit" value="Submit" @click.prevent="onSubmit()"/>
+      <input type="submit" value="Submit" @click.prevent="onSubmit()" />
     </div>
   </div>
 </template>

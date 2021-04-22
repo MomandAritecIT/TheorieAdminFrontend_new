@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="container">
-      <h1>Vragen</h1>
+      <h1 align="center">Vragen</h1>
       <v-card class="pa-5 mx-auto my-5" width="500px">
         <p>Selecteer onderdeel:</p>
         <v-form>

@@ -8,7 +8,7 @@ import axios from 'axios'
 
 require('@/store/subscriber');
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'https://api44.aritecit.nl';
 
 Vue.config.productionTip = false;
 

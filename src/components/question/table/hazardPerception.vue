@@ -17,7 +17,7 @@
           <template v-slot:[`item.image`]="{ item }">
             <v-img
               width="100"
-              v-bind:src="'http://localhost:8000/storage/' + item.image"
+              v-bind:src="'https://api44.aritecit.nl/storage/' + item.image"
             />
           </template>
           <template v-slot:[`item.options`]="{ item }">

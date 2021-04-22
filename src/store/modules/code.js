@@ -16,16 +16,6 @@ const actions = {
 
         commit('SET_CODE', response.data)
     },
-    async addCode({ commit }, expires_on) {
-        const response = await axios.post(
-            '/api/code/p2lbgWkFrykA4QyUmpHihzmc5BNzIABq/store',
-            {
-                expires_on
-            }
-        );
-        
-        commit('NEW_CODE', response.data);
-    },
     async deleteCode({ commit }, id) {
         await axios.delete(`/api/code/${id}/destroy`);
 
