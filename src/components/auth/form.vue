@@ -1,6 +1,5 @@
 <template>
   <section>
-    <Notification />
     <v-card elevation="2" class="pa-5">
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
@@ -35,12 +34,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import Notification from "@/components/notification";
-
 export default {
-  components: {
-    Notification,
-  },
   data() {
     return {
       form: {

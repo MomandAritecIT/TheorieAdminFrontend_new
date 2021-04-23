@@ -20,7 +20,7 @@
             <v-list-item-title>{{ link.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="logoutAction">
+        <v-list-item @click="logout">
           <v-list-item-icon>
             <v-icon>mdi-logout-variant</v-icon>
           </v-list-item-icon>
@@ -44,14 +44,14 @@ import Notification from "@/components/notification";
 
 export default {
   components: {
-    Notification
+    Notification,
   },
   name: "App",
   data() {
     return {
       links: [
         { title: "Dashboard", route: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Code", route: "Code", icon: "mdi-qrcode" }
+        { title: "Code", route: "Code", icon: "mdi-qrcode" },
       ],
       right: null,
     };

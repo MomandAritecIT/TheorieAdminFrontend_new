@@ -10,13 +10,39 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Notification",
   computed: {
     ...mapGetters({
       GET_ERROR: "Notification/GET_ERROR",
       GET_SUCCESS: "Notification/GET_SUCCESS",
+    }),
+  },
+  watch: {
+    GET_ERROR: {
+      handler: function () {
+        var self = this;
+        setTimeout(function () {
+          self.GET_ERROR("");
+        }, 2000);
+      },
+    },
+    GET_SUCCESS: {
+      handler: function () {
+        var self = this;
+        setTimeout(function () {
+          self.GET_SUCCESS("");
+        }, 2000);
+      },
+    },
+    deep: true,
+  },
+  methods: {
+    ...mapActions({
+      login: "Auth/login",
+      SET_SUCCESS: "Notification/SET_SUCCESS",
+      SET_ERROR: "Notification/SET_ERROR",
     }),
   },
 };
