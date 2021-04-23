@@ -1,6 +1,12 @@
 <template>
   <v-app>
-    <v-navigation-drawer class="blue darken-2" dark app permanent>
+    <v-navigation-drawer
+      v-if="authenticated"
+      class="blue darken-2"
+      dark
+      app
+      permanent
+    >
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title"> Theorie Admin </v-list-item-title>
@@ -39,7 +45,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Notification from "@/components/notification";
 
 export default {
@@ -55,6 +61,9 @@ export default {
       ],
       right: null,
     };
+  },
+  computed: {
+    ...mapGetters({ authenticated: "Auth/authenticated" }),
   },
   methods: {
     ...mapActions({

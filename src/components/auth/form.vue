@@ -1,12 +1,13 @@
 <template>
-  <section>
-    <v-card elevation="2" class="pa-5">
+  <section class="d-flex">
+    <v-card class="mx-auto pa-5" min-width="400" elevation="2">
+      <v-img :src="require('@/assets/logo.png')" class="d-block mx-auto" width="200px"></v-img>
+
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field
           v-model="form.email"
           :rules="emailRules"
           label="E-mail"
-          autocomplete
           required
         ></v-text-field>
 
@@ -15,7 +16,6 @@
           :rules="passwordRules"
           label="password"
           type="password"
-          autocomplete
           required
         ></v-text-field>
 
@@ -42,12 +42,12 @@ export default {
         password: "",
       },
       passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) => (v && v.length >= 6) || "Pasword must be atleast 6 characters",
+        (v) => !!v || "Wachtwoord is vereist",
+        (v) => (v && v.length >= 6) || "Wachtwoord moet tenmiste 6 karakters lang zijn",
       ],
       emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        (v) => !!v || "E-mail is vereist",
+        (v) => /.+@.+\..+/.test(v) || "E-mail is niet geldig",
       ],
       valid: false,
     };

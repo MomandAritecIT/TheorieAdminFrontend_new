@@ -20,9 +20,11 @@ const actions = {
 const mutations = {
     POST_ERROR: (state, payload) => {
         state.error = payload;
+        setTimeout(() => { state.error = "" }, 4000);
     },
     POST_SUCCESS: (state, payload) => {
         state.success = payload;
+        setTimeout(() => { state.success = "" }, 4000);
     }
 };
 
