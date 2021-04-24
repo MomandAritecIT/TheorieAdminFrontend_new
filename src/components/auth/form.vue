@@ -3,11 +3,12 @@
     <v-card class="mx-auto pa-5" min-width="400" elevation="2">
       <v-img :src="require('@/assets/logo.png')" class="d-block mx-auto" width="200px"></v-img>
 
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="form" v-model="valid">
         <v-text-field
           v-model="form.email"
           :rules="emailRules"
           label="E-mail"
+          autocomplete="off"
           required
         ></v-text-field>
 
@@ -16,6 +17,7 @@
           :rules="passwordRules"
           label="password"
           type="password"
+          autocomplete="off"
           required
         ></v-text-field>
 
@@ -35,7 +37,7 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  data() {
+  data: () => {
     return {
       form: {
         email: "",
@@ -64,7 +66,7 @@ export default {
           this.$router.replace({
             name: "Dashboard",
           });
-          this.SET_SUCCESS("succesvol ingelogged");
+          this.SET_SUCCESS("Succesvol ingelogged");
         })
         .catch((error) => {
           this.SET_ERROR(error.response.data.error);

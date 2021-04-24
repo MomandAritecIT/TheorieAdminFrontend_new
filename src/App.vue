@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       links: [
-        { title: "Dashboard", route: "Dashboard", icon: "mdi-view-dashboard" },
+        { title: "Dashboard", route: "/", icon: "mdi-view-dashboard" },
         { title: "Code", route: "Code", icon: "mdi-qrcode" },
       ],
       right: null,
@@ -68,12 +68,15 @@ export default {
   methods: {
     ...mapActions({
       logoutAction: "Auth/logout",
+      SET_SUCCESS: "Notification/SET_SUCCESS",
     }),
     logout() {
-      this.logoutAction().then(() => {
+      this.logoutAction().then((response) => {
         this.$router.replace({
           name: "Login",
         });
+
+        this.SET_SUCCESS(response);
       });
     },
   },

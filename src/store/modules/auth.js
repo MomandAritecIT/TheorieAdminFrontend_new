@@ -28,9 +28,13 @@ const actions = {
         }
     },
     async logout({ commit }) {
-        await axios.post('/api/auth/logout').then(() => {
+        const response = await axios.post('/api/auth/logout').then((response) => {
             commit('SET_TOKEN', null);
+
+            return response.data.success;
         });
+
+        return response;
     }
 };
 
