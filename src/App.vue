@@ -66,17 +66,12 @@ export default {
     ...mapGetters({ authenticated: "Auth/authenticated" }),
   },
   methods: {
-    ...mapActions({
-      logoutAction: "Auth/logout",
-      SET_SUCCESS: "Notification/SET_SUCCESS",
-    }),
+    ...mapActions({ logoutAction: "Auth/logout" }),
     logout() {
-      this.logoutAction().then((response) => {
+      this.logoutAction().then(() => {
         this.$router.replace({
           name: "Login",
         });
-
-        this.SET_SUCCESS(response);
       });
     },
   },
