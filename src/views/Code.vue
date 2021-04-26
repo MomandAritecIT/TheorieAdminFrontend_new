@@ -35,7 +35,7 @@
           </v-avatar>
         </template>
         <template v-slot:[`item.options`]="{ item }">
-          <v-icon @click="(modalVisibility = true), (aboutToUpdate = item.id)">mdi-pencil</v-icon>
+          <v-icon @click="(modalVisibility = true), (aboutToUpdate = item.id), setupForUpdate(item.id)">mdi-pencil</v-icon>
           <v-icon @click="(confirmDialogVisibility = true), (aboutToDelete = item.id)">mdi-delete</v-icon>
         </template></v-data-table>
       <DialogConfirm :visibility="confirmDialogVisibility" @confirmAccept="deleteCode" @closeDialog="closeDialog">
@@ -92,9 +92,16 @@ export default {
         this.isLoading = false;
       });
     },
-    updateCode() {
-      console.log('updated');
-      this.closeModal(); 
+    updateCode(editedInput) {
+      var dataToSend = {
+        'is_blocked': editedInput.boolean,
+        'expires_on': editedInput.date
+      }
+      axios.post(`/api/code/${editedInput.id}/update`, dataToSend).then((response) => {
+        this.fetchCodes();
+        this.SET_SUCCESS(response.data.success);
+        this.closeModal();
+      });
     },
     deleteCode() {
       axios.delete(`/api/code/${this.aboutToDelete}/destroy`).then((response) => {
@@ -102,6 +109,14 @@ export default {
         this.allCodes = this.allCodes.filter((code) => code.id !== this.aboutToDelete);
         this.closeDialog();
       });
+    },
+    setupForUpdate(id) {
+      var dataToUpdate = this.allCodes.filter((code) => code.id == id)[0];
+      this.formInputs = {
+        id: id,
+        boolean: dataToUpdate.is_blocked,
+        date: dataToUpdate.expires_on
+      };
     },
     closeDialog() {
       this.confirmDialogVisibility = false;

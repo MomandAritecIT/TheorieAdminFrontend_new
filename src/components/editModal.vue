@@ -10,23 +10,23 @@
             <v-row>
               <v-col v-if="formInputs.boolean !== null" cols="12" sm="6" md="6">
                 <v-switch
+                  v-model="formInputs.boolean"
                   label="Geblokkeerd"
                   color="success"
-                  value="success"
                 ></v-switch>
               </v-col>
               <v-col v-if="formInputs.date !== null" cols="12" sm="6" md="6">
                 <v-menu
                   ref="menu"
                   :close-on-content-click="false"
-                  :return-value.sync="date"
+                  :return-value.sync="formInputs.date"
                   transition="scale-transition"
                   offset-y
                   min-width="auto"
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="date"
+                      v-model="formInputs.date"
                       label="Picker in menu"
                       prepend-icon="mdi-calendar"
                       readonly
@@ -34,12 +34,12 @@
                       v-on="on"
                     ></v-text-field>
                   </template>
-                  <v-date-picker v-model="date" no-title scrollable>
+                  <v-date-picker v-model="formInputs.date" no-title scrollable>
                     <v-spacer></v-spacer>
                     <v-btn text color="primary" @click="menu = false">
                       Cancel
                     </v-btn>
-                    <v-btn text color="primary" @click="$refs.menu.save(date)">
+                    <v-btn text color="primary" @click="$refs.menu.save(formInputs.date)">
                       OK
                     </v-btn>
                   </v-date-picker>
@@ -51,7 +51,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="cancelModal"> Close </v-btn>
-          <v-btn color="blue darken-1" text @click="saveModal"> Save </v-btn>
+          <v-btn color="blue darken-1" text @click="saveModal(formInputs)"> Save </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -62,7 +62,6 @@
 export default {
   props: ["visibility", "formInputs"],
   data: () => ({
-    date: new Date().toISOString().substr(0, 10),
     menu: false,
     modal: false
   }),
@@ -71,7 +70,7 @@ export default {
       this.$emit("cancelModal");
     },
     saveModal() {
-      this.$emit("saveModal");
+      this.$emit("saveModal", this.formInputs);
     },
   },
 };
