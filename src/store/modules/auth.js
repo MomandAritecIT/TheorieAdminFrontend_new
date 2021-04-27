@@ -22,7 +22,7 @@ const actions = {
         if (!state.token) return;
 
         try {
-            await axios.get('/api/auth/user-profile');
+            await axios.get('/api/auth/check');
         } catch (e) {
             commit('SET_TOKEN', null);
         }
